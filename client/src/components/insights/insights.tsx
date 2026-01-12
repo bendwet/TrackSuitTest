@@ -40,7 +40,7 @@ export const Insights = ({
                 <div className={styles["insight-meta"]}>
                   <span>{brandId}</span>
                   <div className={styles["insight-meta-details"]}>
-                    <span>{createdAt.toString()}</span>
+                    <span>{new Date(createdAt).toLocaleString()}</span>
                     <Trash2Icon
                       className={styles["insight-delete"]}
                       onClick={() =>
