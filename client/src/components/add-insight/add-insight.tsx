@@ -36,7 +36,7 @@ export const AddInsight = (props: AddInsightProps) => {
         <label className={styles.field}>
           <select className={styles["field-input"]}
             value={brand}
-            onChange={event => setBrand(event.target.value)}>
+            onChange={event => setBrand(Number(event.target.value))}>
             {BRANDS.map(({ id, name }) => <option key={id} value={id}>{name}</option>)}
           </select>
         </label>
