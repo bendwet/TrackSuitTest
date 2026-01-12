@@ -4,9 +4,11 @@ import { Button } from "../button/button.tsx";
 import { Modal, type ModalProps } from "../modal/modal.tsx";
 import styles from "./add-insight.module.css";
 
-type AddInsightProps = ModalProps;
+type AddInsightProps = ModalProps & {
+  onInsightAdded: () => void;
+};
 
-export const AddInsight = (props: AddInsightProps) => {
+export const AddInsight = ({ onInsightAdded, ...props }: AddInsightProps) => {
   const [brand, setBrand] = useState<number>(1);
   const [insight, setInsight] = useState<string>("");
 
@@ -22,7 +24,9 @@ export const AddInsight = (props: AddInsightProps) => {
         const errorData = await response.json();
         console.log(`Error: ${errorData.message || "Failed to add insight."}`);
       } else {
-        globalThis.location.reload();
+        setInsight("");
+        setBrand(1);
+        onInsightAdded();
       }
     } catch (error) {
       console.error("Error adding insight:", error);

@@ -1,4 +1,3 @@
-import type { useState } from "react";
 import { Trash2Icon } from "lucide-react";
 import { cx } from "../../lib/cx.ts";
 import styles from "./insights.module.css";
@@ -7,16 +6,21 @@ import type { Insight } from "../../schemas/insight.ts";
 type InsightsProps = {
   insights: Insight[];
   className?: string;
+  onInsightDeleted?: (id: number) => void;
 };
 
-export const Insights = ({ insights, className }: InsightsProps) => {
+export const Insights = ({
+  insights,
+  className,
+  onInsightDeleted,
+}: InsightsProps) => {
   const deleteInsight = async (id: number) => {
     try {
       const response = await fetch(`/api/insights/delete/${id}`, {
         method: "DELETE",
       });
       if (response.ok) {
-        globalThis.location.reload();
+        onInsightDeleted?.(id);
       } else {
         console.log("Failed to delete insight with id:", id);
       }
