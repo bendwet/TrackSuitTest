@@ -35,10 +35,10 @@ export const Insights = ({
       <div className={styles.list}>
         {insights?.length
           ? (
-            insights.map(({ id, text, createdAt, brandId }) => (
+            insights.map(({ id, text, createdAt, brand }) => (
               <div className={styles.insight} key={id}>
                 <div className={styles["insight-meta"]}>
-                  <span>{brandId}</span>
+                  <span>{brand}</span>
                   <div className={styles["insight-meta-details"]}>
                     <span>{new Date(createdAt).toLocaleString()}</span>
                     <Trash2Icon
