@@ -9,8 +9,7 @@ type Input = HasDBClient & {
 
 export default (input: Input): Insight => {
   console.log("Creating insight");
-      console.log(input.brand, input.insight);  
-  
+
   const createdAt = new Date().toISOString();
 
   const [row] = input.db

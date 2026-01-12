@@ -12,7 +12,9 @@ type InsightsProps = {
 export const Insights = ({ insights, className }: InsightsProps) => {
   const deleteInsight = async (id: number) => {
     try {
-      const response = await fetch(`/api/insights/delete/${id}`, { method: "DELETE" });
+      const response = await fetch(`/api/insights/delete/${id}`, {
+        method: "DELETE",
+      });
       if (response.ok) {
         globalThis.location.reload();
       } else {
@@ -37,7 +39,8 @@ export const Insights = ({ insights, className }: InsightsProps) => {
                     <span>{createdAt.toString()}</span>
                     <Trash2Icon
                       className={styles["insight-delete"]}
-                      onClick={() => deleteInsight(id)}
+                      onClick={() =>
+                        deleteInsight(id)}
                     />
                   </div>
                 </div>

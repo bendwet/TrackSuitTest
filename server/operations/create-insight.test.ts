@@ -32,7 +32,9 @@ describe("creating an insight in the database", () => {
       expect(row.id).toBe(result.id);
       expect(row.brand).toBe(brand);
       expect(row.text).toBe(text);
-      expect(new Date(row.createdAt).toISOString()).toBe(result.createdAt.toISOString());
+      expect(new Date(row.createdAt).toISOString()).toBe(
+        result.createdAt.toISOString(),
+      );
     });
   });
 });

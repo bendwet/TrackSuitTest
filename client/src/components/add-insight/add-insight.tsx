@@ -34,10 +34,14 @@ export const AddInsight = (props: AddInsightProps) => {
       <h1 className={styles.heading}>Add a new insight</h1>
       <form className={styles.form} onSubmit={addInsight}>
         <label className={styles.field}>
-          <select className={styles["field-input"]}
+          <select
+            className={styles["field-input"]}
             value={brand}
-            onChange={event => setBrand(Number(event.target.value))}>
-            {BRANDS.map(({ id, name }) => <option key={id} value={id}>{name}</option>)}
+            onChange={(event) => setBrand(Number(event.target.value))}
+          >
+            {BRANDS.map(({ id, name }) => (
+              <option key={id} value={id}>{name}</option>
+            ))}
           </select>
         </label>
         <label className={styles.field}>
@@ -47,7 +51,7 @@ export const AddInsight = (props: AddInsightProps) => {
             rows={5}
             placeholder="Something insightful..."
             value={insight}
-            onChange={e => setInsight(e.target.value)}
+            onChange={(e) => setInsight(e.target.value)}
           />
         </label>
         <Button className={styles.submit} type="submit" label="Add insight" />
