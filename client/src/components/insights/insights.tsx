@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Trash2Icon } from "lucide-react";
 import { cx } from "../../lib/cx.ts";
 import styles from "./insights.module.css";
@@ -9,7 +10,18 @@ type InsightsProps = {
 };
 
 export const Insights = ({ insights, className }: InsightsProps) => {
-  const deleteInsight = () => undefined;
+  const deleteInsight = async (id: number) => {
+    try {
+      const response = await fetch(`/api/insights/delete/${id}`, { method: "DELETE" });
+      if (response.ok) {
+        window.location.reload();
+      } else {
+        console.log("Failed to delete insight with id:", id);
+      }
+    } catch (error) {
+      console.error("Error deleting insight:", error);
+    }
+  };
 
   return (
     <div className={cx(className)}>
@@ -17,15 +29,15 @@ export const Insights = ({ insights, className }: InsightsProps) => {
       <div className={styles.list}>
         {insights?.length
           ? (
-            insights.map(({ id, text, date, brandId }) => (
+            insights.map(({ id, text, createdAt, brandId }) => (
               <div className={styles.insight} key={id}>
                 <div className={styles["insight-meta"]}>
                   <span>{brandId}</span>
                   <div className={styles["insight-meta-details"]}>
-                    <span>{date.toString()}</span>
+                    <span>{createdAt.toString()}</span>
                     <Trash2Icon
                       className={styles["insight-delete"]}
-                      onClick={deleteInsight}
+                      onClick={() => deleteInsight(id)}
                     />
                   </div>
                 </div>
