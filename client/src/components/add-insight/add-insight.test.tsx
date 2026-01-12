@@ -9,7 +9,7 @@ describe("AddInsight", () => {
 
     it("renders when open", () => {
         render(
-            <AddInsight open={true} onClose={() => undefined} />,
+            <AddInsight open onClose={() => undefined} />,
         );
         expect(screen.getByText("Add a new insight")).toBeTruthy();
     });
@@ -23,7 +23,7 @@ describe("AddInsight", () => {
 
     it("renders form elements", () => {
         render(
-            <AddInsight open={true} onClose={() => undefined} />,
+            <AddInsight open onClose={() => undefined} />,
         );
         expect(screen.getByText("Insight")).toBeTruthy();
         expect(screen.getByText("Add insight")).toBeTruthy();

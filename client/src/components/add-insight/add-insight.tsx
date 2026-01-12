@@ -22,7 +22,7 @@ export const AddInsight = (props: AddInsightProps) => {
         const errorData = await response.json();
         console.log(`Error: ${errorData.message || "Failed to add insight."}`);
       } else {
-        window.location.reload();
+        globalThis.location.reload();
       }
     } catch (error) {
       console.error("Error adding insight:", error);

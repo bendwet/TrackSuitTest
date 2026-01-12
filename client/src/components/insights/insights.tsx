@@ -1,4 +1,4 @@
-import { useState } from "react";
+import type { useState } from "react";
 import { Trash2Icon } from "lucide-react";
 import { cx } from "../../lib/cx.ts";
 import styles from "./insights.module.css";
@@ -14,7 +14,7 @@ export const Insights = ({ insights, className }: InsightsProps) => {
     try {
       const response = await fetch(`/api/insights/delete/${id}`, { method: "DELETE" });
       if (response.ok) {
-        window.location.reload();
+        globalThis.location.reload();
       } else {
         console.log("Failed to delete insight with id:", id);
       }
