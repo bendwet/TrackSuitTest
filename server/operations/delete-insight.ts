@@ -16,7 +16,7 @@ export default (input: Input): boolean => {
   const result = input.db.sql`
     DELETE FROM insights
     WHERE id = ${input.id}
-    RETURNING *
+    LIMIT 1
   `;
 
   const row = result[0];
