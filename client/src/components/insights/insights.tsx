@@ -39,7 +39,7 @@ export const Insights = ({
             insights.map(({ id, text, createdAt, brand }) => (
               <div className={styles.insight} key={id}>
                 <div className={styles["insight-meta"]}>
-                  <span>{BRANDS[brand - 1].name}</span>
+                  <span>{BRANDS.find(b => b.id === brand).name}</span>
                   <div className={styles["insight-meta-details"]}>
                     <span>{new Date(createdAt).toLocaleString()}</span>
                     <Trash2Icon
