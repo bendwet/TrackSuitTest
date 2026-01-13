@@ -13,18 +13,23 @@ export default (input: Input): boolean => {
     return false;
   }
 
-  const result = input.db.sql`
-    DELETE FROM insights
-    WHERE id = ${input.id}
-    LIMIT 1
-  `;
+  try {
+    const result = input.db.sql`
+      DELETE FROM insights
+      WHERE id = ${input.id}
+      LIMIT 1
+    `;
 
-  const row = result[0];
-  const deleted = !!row;
-  if (deleted) {
-    console.log("Insight deleted:", input.id);
-  } else {
-    console.log("No insight found with id:", input.id);
+    const row = result[0];
+    const deleted = !!row;
+    if (deleted) {
+      console.log("Insight deleted:", input.id);
+    } else {
+      console.log("No insight found with id:", input.id);
+    }
+    return deleted;
+  } catch (error) {
+    console.error("Error deleting insight:", error);
+    return false;
   }
-  return deleted;
 };
