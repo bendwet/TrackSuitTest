@@ -8,6 +8,11 @@ type Input = HasDBClient & {
 export default (input: Input): boolean => {
   console.log("Deleting insight");
 
+  if (input.id === undefined || input.id === null) {
+    console.log("No id provided");
+    return false;
+  }
+
   const result = input.db.sql`
     DELETE FROM insights
     WHERE id = ${input.id}
