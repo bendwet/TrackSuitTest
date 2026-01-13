@@ -17,11 +17,10 @@ export default (input: Input): boolean => {
     const result = input.db.sql`
       DELETE FROM insights
       WHERE id = ${input.id}
-      LIMIT 1
+      RETURNING *
     `;
 
-    const row = result[0];
-    const deleted = !!row;
+    const deleted = result.length > 0;
     if (deleted) {
       console.log("Insight deleted:", input.id);
     } else {
