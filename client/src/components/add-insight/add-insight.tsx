@@ -5,7 +5,7 @@ import { Modal, type ModalProps } from "../modal/modal.tsx";
 import styles from "./add-insight.module.css";
 
 type AddInsightProps = ModalProps & {
-  onInsightAdded: () => void;
+  onInsightAdded?: () => void;
 };
 
 export const AddInsight = ({ onInsightAdded, ...props }: AddInsightProps) => {
@@ -26,7 +26,7 @@ export const AddInsight = ({ onInsightAdded, ...props }: AddInsightProps) => {
       } else {
         setInsight("");
         setBrand(1);
-        onInsightAdded();
+        onInsightAdded?.();
       }
     } catch (error) {
       console.error("Error adding insight:", error);

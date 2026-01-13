@@ -25,8 +25,10 @@ export default (input: Input): Insight => {
     }
 
     const result: Insight = {
-      ...row,
+      id: row.id,
+      brandId: row.brand,
       createdAt: new Date(row.createdAt),
+      text: row.text,
     };
     console.log("Insight created:", result);
     return result;

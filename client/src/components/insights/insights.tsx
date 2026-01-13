@@ -36,16 +36,19 @@ export const Insights = ({
       <div className={styles.list}>
         {insights?.length
           ? (
-            insights.map(({ id, text, createdAt, brand }) => (
+            insights.map(({ id, text, createdAt, brandId }) => (
               <div className={styles.insight} key={id}>
                 <div className={styles["insight-meta"]}>
-                  <span>{BRANDS.find(b => b.id === brand).name}</span>
+                  <span>
+                    {BRANDS.find((b) =>
+                      b.id === brandId
+                    )?.name}
+                  </span>
                   <div className={styles["insight-meta-details"]}>
                     <span>{new Date(createdAt).toLocaleString()}</span>
                     <Trash2Icon
                       className={styles["insight-delete"]}
-                      onClick={() =>
-                        deleteInsight(id)}
+                      onClick={() => deleteInsight(id)}
                     />
                   </div>
                 </div>
