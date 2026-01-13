@@ -1,20 +1,37 @@
+import { useState } from "react";
 import { BRANDS } from "../../lib/consts.ts";
 import { Button } from "../button/button.tsx";
 import { Modal, type ModalProps } from "../modal/modal.tsx";
 import styles from "./add-insight.module.css";
 
-type AddInsightProps = ModalProps;
+type AddInsightProps = ModalProps & {
+  onAddInsight: (brand: number, text: string) => void;
+};
 
-export const AddInsight = (props: AddInsightProps) => {
-  const addInsight = () => undefined;
+export const AddInsight = ({ onAddInsight, ...modalProps }: AddInsightProps) => {
+  const [brand, setBrand] = useState(BRANDS[0].id);
+  const [text, setText] = useState("");
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    if (text.trim()) {
+      onAddInsight(brand, text);
+      setText("");
+      setBrand(BRANDS[0].id);
+    }
+  };
 
   return (
-    <Modal {...props}>
+    <Modal {...modalProps}>
       <h1 className={styles.heading}>Add a new insight</h1>
-      <form className={styles.form} onSubmit={addInsight}>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <label className={styles.field}>
-          <select className={styles["field-input"]}>
-            {BRANDS.map(({ id, name }) => <option value={id}>{name}</option>)}
+          <select
+            className={styles["field-input"]}
+            value={brand}
+            onChange={(e) => setBrand(Number(e.target.value))}
+          >
+            {BRANDS.map(({ id, name }) => <option key={id} value={id}>{name}</option>)}
           </select>
         </label>
         <label className={styles.field}>
@@ -23,6 +40,8 @@ export const AddInsight = (props: AddInsightProps) => {
             className={styles["field-input"]}
             rows={5}
             placeholder="Something insightful..."
+            value={text}
+            onChange={(e) => setText(e.target.value)}
           />
         </label>
         <Button className={styles.submit} type="submit" label="Add insight" />

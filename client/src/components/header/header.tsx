@@ -5,8 +5,17 @@ import { AddInsight } from "../add-insight/add-insight.tsx";
 
 export const HEADER_TEXT = "Suit Tracker Insights";
 
-export const Header = () => {
+type HeaderProps = {
+  onAddInsight: (brand: number, text: string) => void;
+};
+
+export const Header = ({ onAddInsight }: HeaderProps) => {
   const [addInsightOpen, setAddInsightOpen] = useState(false);
+
+  const handleAddInsight = (brand: number, text: string) => {
+    onAddInsight(brand, text);
+    setAddInsightOpen(false);
+  };
 
   return (
     <>
@@ -23,6 +32,7 @@ export const Header = () => {
       <AddInsight
         open={addInsightOpen}
         onClose={() => setAddInsightOpen(false)}
+        onAddInsight={handleAddInsight}
       />
     </>
   );
