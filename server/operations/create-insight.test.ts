@@ -18,7 +18,7 @@ describe("creating an insight in the database", () => {
     it("returns the created insight", () => {
       expect(result).toBeDefined();
       expect(result.id).toBeDefined();
-      expect(result.brandId).toBe(brand);
+      expect(result.brand).toBe(brand);
       expect(result.text).toBe(text);
       expect(result.createdAt).toBeInstanceOf(Date);
     });

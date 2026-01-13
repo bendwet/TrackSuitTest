@@ -10,10 +10,8 @@ export default (input: Input): Insight[] => {
   const rows = input.db.sql<insightsTable.Row>`SELECT * FROM insights`;
 
   const result: Insight[] = rows.map((row) => ({
-    id: row.id,
-    brandId: row.brand,
+    ...row,
     createdAt: new Date(row.createdAt),
-    text: row.text,
   }));
 
   console.log("Retrieved insights successfully: ", result);

@@ -6,7 +6,7 @@ import { AddInsight } from "../add-insight/add-insight.tsx";
 export const HEADER_TEXT = "Suit Tracker Insights";
 
 type HeaderProps = {
-  onInsightAdded?: () => void;
+  onInsightAdded: () => void;
 };
 
 export const Header = ({ onInsightAdded }: HeaderProps) => {
@@ -14,7 +14,7 @@ export const Header = ({ onInsightAdded }: HeaderProps) => {
 
   const handleInsightAdded = () => {
     setAddInsightOpen(false);
-    onInsightAdded?.();
+    onInsightAdded();
   };
 
   return (
