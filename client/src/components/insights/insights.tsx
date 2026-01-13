@@ -1,3 +1,4 @@
+import { BRANDS } from "../../lib/consts.ts";
 import { Trash2Icon } from "lucide-react";
 import { cx } from "../../lib/cx.ts";
 import styles from "./insights.module.css";
@@ -38,7 +39,7 @@ export const Insights = ({
             insights.map(({ id, text, createdAt, brand }) => (
               <div className={styles.insight} key={id}>
                 <div className={styles["insight-meta"]}>
-                  <span>{brand}</span>
+                  <span>{BRANDS[brand - 1].name}</span>
                   <div className={styles["insight-meta-details"]}>
                     <span>{new Date(createdAt).toLocaleString()}</span>
                     <Trash2Icon
